@@ -22,6 +22,15 @@ var commentRoutes     = require("./routes/comments"),
 	indexRoutes       = require("./routes/index")
 
 
+// mongoose.connect("mongodb://localhost/MyBoss_v1", {
+// useUnifiedTopology: true,
+// useNewUrlParser: true,
+// }).then(() =>{
+// 	console.log('Connected to DB!');
+// }).catch(err =>{
+// 	console.log('ERROR: ', err.message)
+// });
+
 
 mongoose.connect("mongodb+srv://trungchanh12:8328626@myboss-74op7.mongodb.net/<dbname>?retryWrites=true&w=majority", {
 useUnifiedTopology: true,
@@ -31,6 +40,9 @@ useNewUrlParser: true,
 }).catch(err =>{
 	console.log('ERROR: ', err.message)
 });
+
+process.env.databaseURL
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -66,6 +78,6 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-app.listen(3000, process.env.IP, ()=> {
+app.listen(process.env.PORT, process.env.IP, ()=> {
 	console.log("The YelpCamp server is running!");
 })
