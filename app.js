@@ -23,9 +23,13 @@ var commentRoutes     = require("./routes/comments"),
 
 
 
-mongoose.connect("mongodb://localhost/myboss_v1", {
+mongoose.connect("mongodb+srv://trungchanh12:8328626@myboss-74op7.mongodb.net/<dbname>?retryWrites=true&w=majority", {
 useUnifiedTopology: true,
 useNewUrlParser: true,
+}).then(() =>{
+	console.log('Connected to DB!');
+}).catch(err =>{
+	console.log('ERROR: ', err.message)
 });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
