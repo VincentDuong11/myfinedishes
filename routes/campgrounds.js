@@ -47,7 +47,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
   var name = req.body.name;
   var price = req.body.price;
   var image = req.body.image;
-  var desc = req.body.description;
+  var description = req.body.description;
   var author = {
       id: req.user._id,
       username: req.user.username
@@ -60,7 +60,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var lat = data[0].latitude;
     var lng = data[0].longitude;
     var location = data[0].formattedAddress;
-    var newCampground = {name: name, price: price, image: image, description: desc, author:author, location: location, lat: lat, lng: lng};
+    var newCampground = {name: name, price: price, image: image, description: description, author:author, location: location, lat: lat, lng: lng};
     // Create a new campground and save to DB
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
