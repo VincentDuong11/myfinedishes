@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 //YelpCamp App
 
 //Require NPM app
