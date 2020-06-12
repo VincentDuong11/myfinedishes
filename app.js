@@ -22,10 +22,10 @@ var commentRoutes     = require("./routes/comments"),
 	campgroundRoutes  = require("./routes/campgrounds"),
 	indexRoutes       = require("./routes/index")
 
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log("Server Has Started!");
-});
+// var port = process.env.PORT || 3000;
+// app.listen(port, function () {
+//   console.log("Server Has Started!");
+// });
 
 var url = process.env.DATABASEURL || "mongodb://localhost/MyBoss_v1";
 
@@ -86,6 +86,6 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-app.listen(port, process.env.IP, ()=> {
+app.listen(process.env.PORT, process.env.IP, ()=> {
 	console.log("The YelpCamp server is running!");
 })
