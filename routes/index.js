@@ -10,26 +10,21 @@ router.get("/", (req, res)=>{
 
 
 
-
-// show register form
-router.get("/register", function(req, res){
-   res.render("register", {page: 'register'}); 
+//handle sign up logic
+router.post("/register", function(req, res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render("register", {error: err.message});
+        }
+        passport.authenticate("local")(req, res, function(){
+           req.flash("success", "Successfully Signed Up! Welcome to MyBoss " + req.body.username);
+           res.redirect("/campgrounds"); 
+        });
+    });
 });
 
-//handle Sign up logic
-router.post("/register", (req, res)=>{
-	var newUser = new User({username: req.body.username});
-	User.register(newUser, req.body.password, (err, user)=>{
-		if (err){
-			req.flash("err ", {error: err.message})
-			return res.render("register");
-		}
-		passport.authenticate("local")(req, res, ()=>{
-			req.flash("success", "Welcome to MyBoss " + user.username);
-			res.redirect("/campgrounds");
-		})
-	})
-})
 
 //show login form
 router.get("/login", function(req, res){
