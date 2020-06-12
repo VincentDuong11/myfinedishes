@@ -7,7 +7,7 @@ var middleware = require("../middleware")
 router.get("/", (req, res)=>{
 	//get all campgrounds from mongodb
 	Campground.find({}, (err, allCampgrounds) =>{
-		(err) ? console.log(err) : res.render("./campgrounds/index", {campgrounds: allCampgrounds});
+		(err) ? console.log(err) : res.render("./campgrounds/index", {campgrounds: allCampgrounds, page: 'campgrounds'});
 	});
 });
 

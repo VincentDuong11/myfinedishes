@@ -5,6 +5,7 @@ var express           = require("express"),
 	app               = express(),
  	bodyParser        = require("body-parser"),
 	mongoose 		  = require("mongoose"),
+	moment 			  = require('moment'),
 	passport          = require("passport"),
 	LocalStrategy     = require("passport-local"),
 	methodOverride 	  = require("method-override"),
@@ -21,8 +22,27 @@ var commentRoutes     = require("./routes/comments"),
 	campgroundRoutes  = require("./routes/campgrounds"),
 	indexRoutes       = require("./routes/index")
 
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log("Server Has Started!");
+});
 
-// mongoose.connect("mongodb://localhost/MyBoss_v1", {
+var url = process.env.DATABASEURL || "mongodb://localhost/MyBoss_v1";
+
+
+//process.env.DATABASEURL=mongodb://localhost/MyBoss_v1
+console.log(process.env.DATABASEURL)
+mongoose.connect(url, {
+useUnifiedTopology: true,
+useNewUrlParser: true,
+}).then(() =>{
+	console.log('Connected to DB!');
+}).catch(err =>{
+	console.log('ERROR: ', err.message)
+});
+
+
+// mongoose.connect("mongodb+srv://trungchanh12:8328626@myboss-74op7.mongodb.net/<dbname>?retryWrites=true&w=majority", {
 // useUnifiedTopology: true,
 // useNewUrlParser: true,
 // }).then(() =>{
@@ -32,16 +52,6 @@ var commentRoutes     = require("./routes/comments"),
 // });
 
 
-mongoose.connect("mongodb+srv://trungchanh12:8328626@myboss-74op7.mongodb.net/<dbname>?retryWrites=true&w=majority", {
-useUnifiedTopology: true,
-useNewUrlParser: true,
-}).then(() =>{
-	console.log('Connected to DB!');
-}).catch(err =>{
-	console.log('ERROR: ', err.message)
-});
-
-process.env.databaseURL
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -73,7 +83,6 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 
 
