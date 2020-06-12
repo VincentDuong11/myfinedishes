@@ -31,7 +31,6 @@ var url = process.env.DATABASEURL || "mongodb://localhost/MyBoss_v1";
 
 
 //process.env.DATABASEURL=mongodb://localhost/MyBoss_v1
-console.log(process.env.DATABASEURL)
 mongoose.connect(url, {
 useUnifiedTopology: true,
 useNewUrlParser: true,
@@ -87,6 +86,6 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-app.listen(process.env.PORT, process.env.IP, ()=> {
+app.listen(port, process.env.IP, ()=> {
 	console.log("The YelpCamp server is running!");
 })
