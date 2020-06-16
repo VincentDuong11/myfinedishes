@@ -8,7 +8,10 @@ router.get("/", (req, res)=>{
 	res.render("landing")
 })
 
-
+//about route
+router.get("/about", (req, res)=>{
+	res.render("about" , {page: 'about'})
+})
 
 
 // show register form
@@ -20,6 +23,7 @@ router.get("/register", function(req, res){
 //handle sign up logic
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
+	if(req.body.admin === 'chanh0511') {newUser.isAdmin = true} 
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);

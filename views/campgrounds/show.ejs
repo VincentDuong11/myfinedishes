@@ -4,7 +4,7 @@
 		<div class="col-md-3">
 			<p>
 				<a class="lead" href="/campgrounds" style="text-decoration: none; color: black">
-				Myfinedishes
+				My dish
 			</a>
 			</p>
 			<div class="list-group">
@@ -30,9 +30,9 @@
 					<p>
 					  <em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
 					</p>
-					<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+					<% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
 					<a class="btn btn-warning" href ="/campgrounds/<%= campground._id%>/edit">Edit</a>
-					<form id="delete-form" action ="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+					<form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are You Sure To Delete?');">
 						<button class="btn btn-danger">
 							Delete
 						</button>
@@ -53,9 +53,9 @@
 							<p>
 							<%= comment.text %>
 							</p>
-							<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+							<% if(currentUser && comment.author.id.equals(currentUser._id)  || currentUser && currentUser.isAdmin){ %>
 							<a class="btn btn-xs btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
-								<form id="delete-form" action ="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+								<form id="delete-form" action ="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Are You Sure To Delete?');">
 									<input type="submit"  class="btn btn-danger btn-xs" value="delete">
 								</form>
 							<% } %>
@@ -66,6 +66,8 @@
 		</div>
 	</div>
 </div>
+
+
 <script>
   function initMap() {
     var lat = <%= campground.lat %>;
@@ -94,5 +96,7 @@
   }
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeXOLyNx_tzts7ETpSUvoXJiDMkw3bDHY&callback=initMap"></script>
+
+
 
 <%- include ("../partials/footer"); %>

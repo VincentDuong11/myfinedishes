@@ -29,7 +29,7 @@ var commentRoutes     = require("./routes/comments"),
 //   console.log("Server Has Started!");
 // });
 
-var url = process.env.DATABASEURL || "mongodb://localhost/MyBoss_v1";
+var url = process.env.DATABASEURL || "mongodb://localhost/myboss_v1";
 
 
 //process.env.DATABASEURL=mongodb://localhost/MyBoss_v1
@@ -86,7 +86,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-
+//change port:3000 to  process.env.PORT  for Heroku
 
 app.listen(process.env.PORT, process.env.IP, ()=> {
 	console.log("The YelpCamp server is running!");

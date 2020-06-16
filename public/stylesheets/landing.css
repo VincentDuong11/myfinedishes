@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 body {
   background-color: #000;
@@ -11,7 +12,12 @@ body {
 }
 
 #landing-header h1 {
-  color: #fff;
+  color: #E44D26;
+  font-size: 50px; 
+  font-family:'Lobster', cursive;
+  font-weight: bold;
+  padding: 10px;
+  animation: textAnimation 50s linear infinite; 
 }
 
 .slideshow { 
@@ -41,23 +47,34 @@ body {
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(https://wallpaperplay.com/walls/full/3/7/a/72449.jpg ) 
+  background-image: url(https://images.unsplash.com/photo-1511714830748-636e1a12bb88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) ;
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://wallpaperplay.com/walls/full/8/a/d/72403.jpg);
+  background-image: url(https://images.pexels.com/photos/2059151/pexels-photo-2059151.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://wallpaperplay.com/walls/full/2/0/f/72418.jpg);
+  background-image: url(https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(https://wallpaperplay.com/walls/full/6/1/e/72453.jpg);
+  background-image: url(https://tamnhinrong.org/163005-banh-xeo.jpg);
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-  background-image: url(https://wallpaperplay.com/walls/full/8/2/b/72402.jpg);
+  background-image: url(https://2.bp.blogspot.com/-L1U4Ryqnjvo/VvS2YFi8ivI/AAAAAAAAAGY/VnJgK8jb2GwfAWQQtozDVnCL-oIgt15FQ/s1600/5447c8f7826be0b3545e4463_sandwiches-around-the-world-banh-mi-vietnam.jpg);
   animation-delay: 40s; 
+}
+
+
+#openPopup:focus {
+    outline: none;
+}
+.btn-primary{
+	background-image: linear-gradient(to right, #E44D26 0%, #F16529 51%, #E44D26 100%);
+    outline: none;
+	border-color: #E44D26;
+	animation: imageAnimation 50s linear infinite; 
 }
 
 @keyframes imageAnimation { 
@@ -76,3 +93,22 @@ body {
     opacity: 0
   }
 }
+
+@keyframes textAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+	color: white;   
+  }
+  20% {
+    opacity: 1
+  30% {
+    opacity: 0;
+  }
+}
+
+
