@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport")
 var User = require("../models/user")
-var async1 = require("async");
+var async = require('async');
 var nodemailer = require("nodemailer");
 var crypto = require('crypto')
 //root route
