@@ -124,7 +124,7 @@ router.put("/:id", middleware.checkCampOwn, function(req, res){
             res.redirect("back");
         } else {
             req.flash("success","Successfully Updated!");
-            res.redirect("/campgrounds/" + campground._id);
+            res.redirect("/campgrounds/" + updatedCamp._id);
         }
     });
   });
