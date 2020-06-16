@@ -107,18 +107,38 @@ router.get("/:id/edit", middleware.checkCampOwn, (req, res)=>{
 // 	})
 // })
 
-// UPDATE CAMPGROUND ROUTE
+// // UPDATE CAMPGROUND ROUTE
+// router.put("/:id", middleware.checkCampOwn, function(req, res){
+//   geocoder.geocode(req.body.location, function (err, data) {
+//     if (err || !data.length) {
+//       req.flash('error', 'Invalid address');
+//       return res.redirect('back');
+//     }
+//     req.body.campground.lat = data[0].latitude;
+//     req.body.campground.lng = data[0].longitude;
+//     req.body.campground.location = data[0].formattedAddress;
+
+//     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCamp){
+//         if(err){
+//             req.flash("error", err.message);
+//             res.redirect("back");
+//         } else {
+//             req.flash("success","Successfully Updated!");
+//             res.redirect("/campgrounds/" + campground._id);
+//         }
+//     });
+//   });
+// });
+
+
+// PUT - updates campground in the database
 router.put("/:id", middleware.checkCampOwn, function(req, res){
   geocoder.geocode(req.body.location, function (err, data) {
-    if (err || !data.length) {
-      req.flash('error', 'Invalid address');
-      return res.redirect('back');
-    }
-    req.body.campground.lat = data[0].latitude;
-    req.body.campground.lng = data[0].longitude;
-    req.body.campground.location = data[0].formattedAddress;
-
-    Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCamp){
+    var lat = data.results[0].geometry.location.lat;
+    var lng = data.results[0].geometry.location.lng;
+    var location = data.results[0].formatted_address;
+    var newData = {name: req.body.name, image: req.body.image, description: req.body.description, cost: req.body.cost, location: location, lat: lat, lng: lng};
+    Campground.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, campground){
         if(err){
             req.flash("error", err.message);
             res.redirect("back");
@@ -129,6 +149,7 @@ router.put("/:id", middleware.checkCampOwn, function(req, res){
     });
   });
 });
+
 
 //DESTROY campgrounds router
 router.delete("/:id", middleware.checkCampOwn, (req, res)=>{
