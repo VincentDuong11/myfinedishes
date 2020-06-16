@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 var Dish = require("./models/dish");
 var Comment   = require("./models/comment");
- 
 var seeds = [
     {
         name: "Cloud's Rest", 
