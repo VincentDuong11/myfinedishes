@@ -5,13 +5,13 @@
 <div class="row">
 	
 	
-<h1 style="text-align: center;">
-	Create a new Comment to <%= campground.name %>
-</h1>
+<h2 style="text-align: center;">
+	 Comment to <strong><%= dish.name %></strong>
+</h2>
 	<div style="width: 30%; margin: 30px auto;">
 		
 	
-<form action="/campgrounds/<%=campground._id%>/comments"  method ="POST">
+<form action="/dishes/<%=dish._id%>/comments"  method ="POST">
 	<div class="form-group">
 		<input class="form-control" type="text" name = "comment[text]" placeholder="text">
 	</div>
@@ -23,7 +23,7 @@
 	</div>
 	
 	</form>
-		<a href="/campgrounds">Go back</a>
+		<a href="/dishes">Go back</a>
 	</div>
 	
 

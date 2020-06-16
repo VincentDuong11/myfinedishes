@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var Campground = require("./models/campground");
+var Dish = require("./models/dish");
 var Comment   = require("./models/comment");
  
 var seeds = [
@@ -21,19 +21,19 @@ var seeds = [
 ]
  
 async function seedDB(){
-	   //Remove all campgrounds Comment
+	   //Remove all dishs Comment
    await Comment.remove({});
-   //Remove all campgrounds
-   await Campground.remove({});
+   //Remove all dishs
+   await Dish.remove({});
    for(const seed of seeds){
-	   let campground = await Campground.create(seed);
+	   let dish = await Dish.create(seed);
 	   let comment = await Comment.create(
                         {
                             text: "This place is great, but I wish there was internet",
                             author: "Homer"
                         })
-	     campground.comments.push(comment);
-         campground.save();
+	     dish.comments.push(comment);
+         dish.save();
    }
 }
       
@@ -45,24 +45,24 @@ module.exports = seedDB;
 
 
 // function seedDB(){
-//    //Remove all campgrounds
-//    Campground.remove({}, function(err){
+//    //Remove all dishs
+//    Dish.remove({}, function(err){
 //         if(err){
 //             console.log(err);
 //         }
-//         console.log("removed campgrounds!");
+//         console.log("removed dishs!");
 //         Comment.remove({}, function(err) {
 //             if(err){
 //                 console.log(err);
 //             }
 //             console.log("removed comments!");
-//              //add a few campgrounds
+//              //add a few dishs
 //             data.forEach(function(seed){
-//                 Campground.create(seed, function(err, campground){
+//                 Dish.create(seed, function(err, dish){
 //                     if(err){
 //                         console.log(err)
 //                     } else {
-//                         console.log("added a campground");
+//                         console.log("added a dish");
 //                         //create a comment
 //                         Comment.create(
 //                             {
@@ -72,8 +72,8 @@ module.exports = seedDB;
 //                                 if(err){
 //                                     console.log(err);
 //                                 } else {
-//                                     campground.comments.push(comment);
-//                                     campground.save();
+//                                     dish.comments.push(comment);
+//                                     dish.save();
 //                                     console.log("Created new comment");
 //                                 }
 //                             });

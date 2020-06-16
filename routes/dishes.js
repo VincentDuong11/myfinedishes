@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var Campground =require("../models/campground")
+var Dish =require("../models/dish")
 var middleware = require("../middleware")
 var NodeGeocoder = require('node-geocoder');
  
@@ -13,17 +13,17 @@ var options = {
  
 var geocoder = NodeGeocoder(options);
 
-//Index - show all campgrounds
+//Index - show all dishes
 router.get("/", (req, res)=>{
-	//get all campgrounds from mongodb
-	Campground.find({}, (err, allCampgrounds) =>{
-		(err) ? console.log(err) : res.render("./campgrounds/index", {campgrounds: allCampgrounds, page: 'campgrounds'});
+	//get all dishes from mongodb
+	Dish.find({}, (err, allDishes) =>{
+		(err) ? console.log(err) : res.render("./dishes/index", {dishes: allDishes, page: 'dishes'});
 	});
 });
 
-// //create - add new campground to DB
+// //create - add new dish to DB
 // router.post("/", middleware.isLoggedIn, (req, res)=>{
-// 	//get data from form and add to campgrounds array
+// 	//get data from form and add to dishes array
 // 	var name = req.body.name,
 // 		price = req.body.price,
 // 	    image = req.body.image,
@@ -32,18 +32,18 @@ router.get("/", (req, res)=>{
 // 			id: req.user._id,
 // 			username: req.user.username
 // 		}
-// 	var newCampground = {name: name, price: price, image: image, description: description, author: author};
+// 	var newDish = {name: name, price: price, image: image, description: description, author: author};
 	
-// 	//create new campgrounds and save to db
-// 	Campground.create(newCampground,(err, newlyCampground)=>{
-// 		(err) ? console.log("Error is " + err) : res.redirect("/campgrounds");
+// 	//create new dishes and save to db
+// 	Dish.create(newDish,(err, newlyDish)=>{
+// 		(err) ? console.log("Error is " + err) : res.redirect("/dishes");
 // 		});
 	
 // 	});
 
-//CREATE - add new campground to DB
+//CREATE - add new dish to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
-  // get data from form and add to campgrounds array
+  // get data from form and add to dishes array
   var name = req.body.name;
   var price = req.body.price;
   var image = req.body.image;
@@ -61,49 +61,49 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var lat = data[0].latitude;
     var lng = data[0].longitude;
     var location = data[0].formattedAddress;
-    var newCampground = {name: name, price: price, image: image, description: description, author:author, location: location, lat: lat, lng: lng};
-    // Create a new campground and save to DB
-    Campground.create(newCampground, function(err, newlyCreated){
+    var newDish = {name: name, price: price, image: image, description: description, author:author, location: location, lat: lat, lng: lng};
+    // Create a new dish and save to DB
+    Dish.create(newDish, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
-            //redirect back to campgrounds page
+            //redirect back to dishes page
             console.log(newlyCreated);
-            res.redirect("/campgrounds");
+            res.redirect("/dishes");
         }
     });
   });
 });
-//New - show form crate new campground
+//New - show form crate new dish
 router.get("/new", middleware.isLoggedIn, (req, res)=>{
-	res.render("campgrounds/new");
+	res.render("dishes/new");
 	
 	})
-//Show more info ab campground
+//Show more info ab dish
 router.get("/:id", (req, res)=>{
-	//find the campgrounds with provided id
-	Campground.findById(req.params.id).populate("comments").exec((err, foundCamp) =>{
+	//find the dishes with provided id
+	Dish.findById(req.params.id).populate("comments").exec((err, foundCamp) =>{
 		if(err || !foundCamp) {
-			req.flash("error", "Campground not found");
+			req.flash("error", "Dish not found");
 			res.redirect("back");
 		}else{
-			res.render("campgrounds/show", {campground: foundCamp})
+			res.render("dishes/show", {dish: foundCamp})
 			}
 		
 		});
 	})
 
-//EDIT campgrounds route
+//EDIT dishes route
 router.get("/:id/edit", middleware.checkCampOwn, (req, res)=>{
-			Campground.findById(req.params.id,  (err, foundCamp) =>{
+			Dish.findById(req.params.id,  (err, foundCamp) =>{
 		 // err ? res.send("Err") : 
-				res.render("campgrounds/edit", {campground: foundCamp})	
+				res.render("dishes/edit", {dish: foundCamp})	
 		})
 })
-//UPDATE campgrounds route
+//UPDATE dishes route
 // router.put("/:id", middleware.checkCampOwn, (req, res)=>{
-// 	Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCamp)=>{
-// 		err ? res.redirect("/campgrounds") : req.flash("success", "Successfully update your post!"); res.redirect("/campgrounds/" + req.params.id);
+// 	Dish.findByIdAndUpdate(req.params.id, req.body.dish, (err, updatedCamp)=>{
+// 		err ? res.redirect("/dishes") : req.flash("success", "Successfully update your post!"); res.redirect("/dishes/" + req.params.id);
 // 	})
 // })
 
@@ -114,47 +114,47 @@ router.put("/:id", middleware.checkCampOwn, function(req, res){
       req.flash('error', 'Invalid address');
       return res.redirect('back');
     }
-    req.body.campground.lat = data[0].latitude;
-    req.body.campground.lng = data[0].longitude;
-    req.body.campground.location = data[0].formattedAddress;
+    req.body.dish.lat = data[0].latitude;
+    req.body.dish.lng = data[0].longitude;
+    req.body.dish.location = data[0].formattedAddress;
 
-    Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCamp){
+    Dish.findByIdAndUpdate(req.params.id, req.body.dish, function(err, updatedCamp){
         if(err){
             req.flash("error", err.message);
             res.redirect("back");
         } else {
             req.flash("success","Successfully Updated!");
-            res.redirect("/campgrounds/" + updatedCamp._id);
+            res.redirect("/dishes/" + updatedCamp._id);
         }
     });
   });
 });
 
 
-// // PUT - updates campground in the database
+// // PUT - updates dish in the database
 // router.put("/:id", middleware.checkCampOwn, function(req, res){
 //   geocoder.geocode(req.body.location, function (err, data) {
 //     var lat = data.results[0].geometry.location.lat;
 //     var lng = data.results[0].geometry.location.lng;
 //     var location = data.results[0].formatted_address;
 //     var newData = {name: req.body.name, image: req.body.image, description: req.body.description, cost: req.body.cost, location: location, lat: lat, lng: lng};
-//     Campground.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, campground){
+//     Dish.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, dish){
 //         if(err){
 //             req.flash("error", err.message);
 //             res.redirect("back");
 //         } else {
 //             req.flash("success","Successfully Updated!");
-//             res.redirect("/campgrounds/" + campground._id);
+//             res.redirect("/dishes/" + dish._id);
 //         }
 //     });
 //   });
 // });
 
 
-//DESTROY campgrounds router
+//DESTROY dishes router
 router.delete("/:id", middleware.checkCampOwn, (req, res)=>{
-	Campground.findByIdAndRemove(req.params.id, err => {
-		 err ? res.redirect("/campgrounds") :  req.flash("success","Successfully delete!"); res.redirect("/campgrounds")
+	Dish.findByIdAndRemove(req.params.id, err => {
+		 err ? res.redirect("/dishes") :  req.flash("success","Successfully delete!"); res.redirect("/dishes")
 	})
 })
 

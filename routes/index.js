@@ -33,7 +33,7 @@ router.post("/register", function(req, res){
         }
         passport.authenticate("local")(req, res, function(){
            req.flash("success", "Successfully Signed Up! Welcome to Myfinedishes " + req.body.username);
-           res.redirect("/campgrounds"); 
+           res.redirect("/dishes"); 
         });
     });
 });
@@ -47,20 +47,20 @@ router.get("/login", function(req, res){
 //handle login logic
 router.post("/login",passport.authenticate("local", 
 											{
-												// successRedirect: "/campgrounds",
+												// successRedirect: "/dishes",
 												// successFlash: "Welcome",
 												failureRedirect: "/login",
 												failureFlash: true
 											}), (req, res)=>{
 													  req.flash("success", "Welcome back! " + req.body.username);
-														res.redirect("/campgrounds");
+														res.redirect("/dishes");
 														})
 
 //show logout route
 router.get("/logout", (req, res)=>{
 	req.logout();
 	req.flash("success", "Logged you out")
-	res.redirect("/campgrounds");
+	res.redirect("/dishes");
 })
 
 //Forgot Password

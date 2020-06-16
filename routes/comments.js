@@ -1,30 +1,30 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
-var Campground = require("../models/campground")
+var Dish = require("../models/dish")
 var Comment = require("../models/comment")
 var middleware = require("../middleware")
 
 
 //Comment new
 router.get("/new", middleware.isLoggedIn, (req, res)=>{
-	Campground.findById(req.params.id, (err, campground)=>{
+	Dish.findById(req.params.id, (err, dish)=>{
 		if(err){
 			console.log("err")
 		} else{
-			res.render("comments/new", {campground: campground})
+			res.render("comments/new", {dish: dish})
 		} 
 	})		
 })
 
 //comments create
 router.post("/", middleware.isLoggedIn, (req, res)=>{
-	Campground.findById(req.params.id, (err, campground)=>{
+	Dish.findById(req.params.id, (err, dish)=>{
 		if (err){
-			res.redirect("/campgrounds");
+			res.redirect("/dishes");
 		}else{	
 			Comment.create(req.body.comment, (err, comment)=>{
 				if (err){
-					res.redirect("/campgrounds")
+					res.redirect("/dishes")
 				}else {
 					//add username and id to comments
 					comment.author.id = req.user._id
@@ -32,10 +32,10 @@ router.post("/", middleware.isLoggedIn, (req, res)=>{
 					//save the comments
 					comment.save()
 					
-					campground.comments.push(comment);
-					campground.save();
+					dish.comments.push(comment);
+					dish.save();
 					req.flash("success", "Successfully added comment!")
-					res.redirect("/campgrounds/" + campground._id);
+					res.redirect("/dishes/" + dish._id);
 				   }
 			})
 		
@@ -44,13 +44,13 @@ router.post("/", middleware.isLoggedIn, (req, res)=>{
 	})
 //Comment edit route
  router.get("/:comment_id/edit", middleware.checkCommentOwn,  (req, res)=>{
-	 Campground.findById(req.params.id, (err, foundCamp)=>{
-		 if(err || !foundCamp){
-			 req.flash("error", "No Campground found");
+	 Dish.findById(req.params.id, (err, foundDish)=>{
+		 if(err || !foundDish){
+			 req.flash("error", "No Dish found");
 			 res.redirect("back");
 		 }else{
 			 	 Comment.findById(req.params.comment_id, (err, foundComment)=>{
-			 		err ? res.redirect("back") :  res.render("comments/edit", {campground_id: req.params.id, comment: foundComment})
+			 		err ? res.redirect("back") :  res.render("comments/edit", {dish_id: req.params.id, comment: foundComment, dish: foundDish})
 			 	})
 			 }
 		})
@@ -58,7 +58,7 @@ router.post("/", middleware.isLoggedIn, (req, res)=>{
 //Comment update route
  router.put("/:comment_id", middleware.checkCommentOwn, (req, res)=>{
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment)=>{
-		err ? res.redirect("/campgrounds") : req.flash("success", "Successfully update comment!"); res.redirect("/campgrounds/" + req.params.id);
+		err ? res.redirect("/dishes") : req.flash("success", "Successfully update comment!"); res.redirect("/dishes/" + req.params.id);
 	})
 	
  })
@@ -69,7 +69,7 @@ router.delete("/:comment_id", middleware.checkCommentOwn, (req, res)=>{
 			res.redirect("back")
 		} else{
 			req.flash("success", "Comment successully deleted!"); 
-			res.redirect("/campgrounds/" + req.params.id)
+			res.redirect("/dishes/" + req.params.id)
 		} 
 	})
 })

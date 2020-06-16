@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<p>
-				<a class="lead" href="/campgrounds" style="text-decoration: none; color: black">
+				<a class="lead" href="/dishes" style="text-decoration: none; color: black">
 				My dish
 			</a>
 			</p>
@@ -16,23 +16,23 @@
 		</div>
 		<div class="col-md-9">
 			<div class="thumbnail">
-				 <img class="img-responsive center-block" src="<%= campground.image %>">    <!-- Image of post (gonna make it multiple slide images-->
+				 <img class="img-responsive center-block" src="<%= dish.image %>">    <!-- Image of post (gonna make it multiple slide images-->
 				<div class="caption-full">
 					<h4 class="pull-right">
-						<strong>$<%= campground.price%>/dish</strong>
+						<strong>$<%= dish.price%>/dish</strong>
 					</h4>
 					<h4>
-						<a><%= campground.name %></a>
+						<a><%= dish.name %></a>
 					</h4>
 					<p>
-						<%= campground.description %>
+						<%= dish.description %>
 					</p>
 					<p>
-					  <em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+					  <em>Submitted by: <%= dish.author.username %>, <%= moment(dish.createdAt).fromNow() %></em>
 					</p>
-					<% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
-					<a class="btn btn-warning" href ="/campgrounds/<%= campground._id%>/edit">Edit</a>
-					<form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are You Sure To Delete?');">
+					<% if(currentUser && dish.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+					<a class="btn btn-warning" href ="/dishes/<%= dish._id%>/edit">Edit</a>
+					<form id="delete-form" action="/dishes/<%= dish._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are You Sure To Delete?');">
 						<button class="btn btn-danger">
 							Delete
 						</button>
@@ -42,10 +42,10 @@
 			</div>
 			<div class="well">
 				<div class="text-right">
-					<a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+					<a class="btn btn-success" href="/dishes/<%= dish._id %>/comments/new">Add New Comment</a>
 				</div>
 				<hr>
-				<% campground.comments.forEach((comment) => { %>
+				<% dish.comments.forEach((comment) => { %>
 					<div class="row">
 						<div class="col-md-12">
 							<h4><strong><%= comment.author.username %></strong></h4>
@@ -54,8 +54,8 @@
 							<%= comment.text %>
 							</p>
 							<% if(currentUser && comment.author.id.equals(currentUser._id)  || currentUser && currentUser.isAdmin){ %>
-							<a class="btn btn-xs btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
-								<form id="delete-form" action ="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Are You Sure To Delete?');">
+							<a class="btn btn-xs btn-warning" href="/dishes/<%=dish._id%>/comments/<%=comment._id%>/edit">Edit</a>
+								<form id="delete-form" action ="/dishes/<%=dish._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Are You Sure To Delete?');">
 									<input type="submit"  class="btn btn-danger btn-xs" value="delete">
 								</form>
 							<% } %>
@@ -70,8 +70,8 @@
 
 <script>
   function initMap() {
-    var lat = <%= campground.lat %>;
-    var lng = <%= campground.lng %>;
+    var lat = <%= dish.lat %>;
+    var lng = <%= dish.lng %>;
     var center = {lat: lat, lng: lng };
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
@@ -79,9 +79,9 @@
         scrollwheel: false
     });
     var contentString = `
-      <strong><%= campground.name %><br />
-      <%= campground.location %></strong>
-      <p><%= campground.description %></p>
+      <strong><%= dish.name %><br />
+      <%= dish.location %></strong>
+      <p><%= dish.description %></p>
     `
     var infowindow = new google.maps.InfoWindow({
       content: contentString

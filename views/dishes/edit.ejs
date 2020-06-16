@@ -3,29 +3,29 @@
 <div class="container">	
 	<div class="row">	
 		<h2 style="text-align: center;">
-			Edit <%=campground.name %>
+			Edit <strong><%= dish.name %></strong>
 		</h2>
 			<div style="width: 30%; margin: 30px auto;">
-				<form action="/campgrounds/<%= campground._id %>?_method=PUT"  method ="POST">
+				<form action="/dishes/<%= dish._id %>?_method=PUT"  method ="POST">
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input class="form-control" type="text" name = "campground[name]" value= "<%= campground.name %>">
+						<input class="form-control" type="text" name = "dish[name]" value= "<%= dish.name %>">
 					</div>
 					<div class="form-group">
 						<label for="price">Price</label>
-						<input class="form-control" type="number" name = "campground[price]" placeholder="<%= campground.price %>" min="0.01" step="0.01">
+						<input class="form-control" type="number" name = "dish[price]" placeholder="<%= dish.price %>" min="0.01" step="0.01">
 					</div>
 					<div class="form-group">
 						<label for="image">Image</label>
-						<input class="form-control" type="text" name ="campground[image]" value= "<%= campground.image%>">
+						<input class="form-control" type="text" name ="dish[image]" value= "<%= dish.image%>">
 					</div>
 					<div class="form-group">
     					<label for="location">Location</label>
-    					<input class="form-control" type="text" name="location" id="location" value="<%= campground.location %>">
+    					<input class="form-control" type="text" name="location" id="location" value="<%= dish.location %>">
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
-						<input class="form-control" type="text" name ="campground[description]" value= "<%= campground.description%>">
+						<input class="form-control" type="text" name ="dish[description]" value= "<%= dish.description%>">
 					</div>
 						<div class="form-group">
 							<button class="btn btn-lg btn-default btn-block btn-primary">
@@ -33,7 +33,7 @@
 					</button>
 					</div>
 				</form>
-				<a href="/campgrounds/<%=campground._id%>">Go back</a>
+				<a href="/dishes/<%=dish._id%>">Go back</a>
 			</div>		
 	</div>
 </div>

@@ -32,7 +32,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1 style="text: center; color: white;">Share your favourite dish</h1>
-				<a class="btn btn-large btn-info" href="/campgrounds/new">Add more dish</a>
+				<a class="btn btn-large btn-info" href="/dishes/new">Add more dish</a>
             </div>
           </div>
         </div>
@@ -43,17 +43,17 @@
 
 
   <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-    <% campgrounds.forEach((campground)=>{ %>
+    <% dishes.forEach((dish)=>{ %>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
       <div class="thumbnail">
-        <img src="<%= campground.image %>" >
+        <img src="<%= dish.image %>" >
 		  <div class="caption">
 			  <h4>
-				  <%= campground.name %>
+				  <%= dish.name %>
 			  </h4>
 		  </div>
 		  <p>
-			  <a href="/campgrounds/<%= campground._id %>" id="info" class="btn btn-info">More Info</a>
+			  <a href="/dishes/<%= dish._id %>" id="info" class="btn btn-info">More Info</a>
 		  </p>
       </div>
     </div>

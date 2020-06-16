@@ -1,13 +1,13 @@
 //All middleware goes here
 var middlewareObj = {}
-var Campground = require("../models/campground")
+var Dish = require("../models/dish")
 var Comment = require("../models/comment")
 
 middlewareObj.checkCampOwn = function (req, res, next){
 	if(req.isAuthenticated()){
-			Campground.findById(req.params.id, (err, foundCamp)=>{
+			Dish.findById(req.params.id, (err, foundCamp)=>{
 			 if(err || !foundCamp){
-				 req.flash("error", "Campground not found")
+				 req.flash("error", "Dish not found")
 				 res.redirect("back")
 			}else{
 					if(foundCamp.author.id.equals(req.user._id) || req.user.isAdmin){

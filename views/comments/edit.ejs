@@ -5,13 +5,13 @@
 <div class="row">
 	
 	
-<h1 style="text-align: center;">
-	Edit 
-</h1>
+<h2 style="text-align: center;">
+	Edit comment to <strong><%= dish.name %></strong>
+</h2>
 	<div style="width: 30%; margin: 30px auto;">
 		
 	
-<form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+<form action="/dishes/<%= dish_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
 	<div class="form-group">
 		<input class="form-control" type="text" name = "comment[text]" value="<%= comment.text %>">
 	</div>
@@ -23,7 +23,7 @@
 	</div>
 	
 	</form>
-		<a href="/campgrounds/">Go back</a>
+		<a href="/dishes/<%= dish_id %>">Go back</a>
 	</div>	
 	</div>
 	</div>

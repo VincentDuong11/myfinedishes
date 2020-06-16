@@ -14,14 +14,14 @@ var express           = require("express"),
 	flash 			  = require("connect-flash")
 
 //Require classes
-var Campground        = require("./models/campground"),
+var Dish              = require("./models/dish"),
 	Comment           = require("./models/comment"),
 	seedDB            = require("./seeds"),
 	User              = require("./models/user")
 
 //requiring routes
 var commentRoutes     = require("./routes/comments"),
-	campgroundRoutes  = require("./routes/campgrounds"),
+	dishRoutes        = require("./routes/dishes"),
 	indexRoutes       = require("./routes/index")
 
 // var port = process.env.PORT || 3000;
@@ -78,8 +78,8 @@ app.use((req, res, next)=>{
 		})
 
 app.use(indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/dishes", dishRoutes);
+app.use("/dishes/:id/comments", commentRoutes);
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
