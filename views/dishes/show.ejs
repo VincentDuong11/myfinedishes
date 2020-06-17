@@ -44,13 +44,18 @@
 				<div class="text-right">
 					<a class="btn btn-success" href="/dishes/<%= dish._id %>/comments/new">Add New Comment</a>
 				</div>
-				<hr>
+				<!-- <hr> -->
 				<% dish.comments.forEach((comment) => { %>
 					<div class="row">
 						<div class="col-md-12">
-							<h4><strong><%= comment.author.username %></strong></h4>
-							<span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
-							<p>
+							<div >
+								<h4 style="display: inline-block; padding-top: 20px"><strong><%= comment.author.username %></strong></h4>
+							<span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span> 
+							</div> 
+								
+						
+							
+							<p style="word-wrap: break-word; display:block;">
 							<%= comment.text %>
 							</p>
 							<% if(currentUser && comment.author.id.equals(currentUser._id)  || currentUser && currentUser.isAdmin){ %>

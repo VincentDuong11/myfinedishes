@@ -13,7 +13,7 @@
 	
 <form action="/dishes/<%=dish._id%>/comments"  method ="POST">
 	<div class="form-group">
-		<input class="form-control" type="text" name = "comment[text]" placeholder="text">
+		<textarea class="form-control" type="text" name = "comment[text]" rows = "6" cols = "47" placeholder="add comment here"></textarea>
 	</div>
 	
 		<div class="form-group">
@@ -23,7 +23,7 @@
 	</div>
 	
 	</form>
-		<a href="/dishes">Go back</a>
+		<a href="/dishes/<%= dish._id %>">Go back</a>
 	</div>
 	
 
