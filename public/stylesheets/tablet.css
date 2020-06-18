@@ -1,0 +1,25 @@
+@media only screen and ( min-width: 600px) and (max-width: 768px) { 
+	
+	.carousel-inner .item{
+		height: 400px !important;
+		background-size:cover;
+		background-position: center center;		 
+	}
+	 /* about page */
+	#profile2{
+		padding: 0 !important;
+		margin-top: 0
+	} 
+	#profile1{
+		border-top: 2px solid;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		margin-top: 20px;
+	} 
+	#profile3{
+		border-top: 2px solid;
+		padding-top: 20px;
+		padding-bottom: 10px;
+		margin-top: 40px;
+	} 
+}

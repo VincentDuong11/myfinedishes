@@ -5,7 +5,14 @@
 /* #col2{
 	padding-top: 50px;
 } */
+.card{
+	font-size: 17px; text-align: justify;
+}
 
+#profile2, #profile3{
+	text-align: center;
+	padding-top: 100px;
+} 
 #card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 350px;

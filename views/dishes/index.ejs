@@ -8,45 +8,46 @@
 
 	 <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide " data-ride="carousel">
 								<!-- Indicators -->
 						<ol class="carousel-indicators">
 						  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						  <li data-target="#myCarousel" data-slide-to="1"></li>
 						</ol>
-      <div class="carousel-inner">
+        <div class="carousel-inner">
 		
-		  <!-- https://img.taste.com.au/XG13QkMs/taste/2016/11/beef-and-noodle-soup-pho-bo-33067-1.jpeg -->
-        <div class="item active">
-        <img src="https://img.taste.com.au/XG13QkMs/taste/2016/11/beef-and-noodle-soup-pho-bo-33067-1.jpeg" class="img-responsive center-block" alt="pho bo" data-interval="2000">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1 style="text: center; color: white;">Expore the fine dish</h1>
-              <a class="btn btn-large btn-info" href="/register">Sign up today</a>
-            </div>
-          </div>
-        </div>
+			  <!-- https://img.taste.com.au/XG13QkMs/taste/2016/11/beef-and-noodle-soup-pho-bo-33067-1.jpeg -->
+			<div class="item active">
+			<img id="pho" src="https://img.taste.com.au/XG13QkMs/taste/2016/11/beef-and-noodle-soup-pho-bo-33067-1.jpeg" class="img-responsive center-block" alt="pho bo" data-interval="2000">
+			  <div class="container">
+				<div class="carousel-caption">
+				  <h1>Expore the fine dish</h1>
+				  <a class="btn btn-large btn-info" href="/register">Sign up today</a>
+				</div>
+			  </div>
+			</div>
 		  
-        <div class="item">
- 			<img src="https://www.comtamcali.com/images/slider2.jpg" alt="com tam" class="d-block w-100 img-responsive" data-interval="2000">	
-          <div class="container">
-            <div class="carousel-caption">
-              <h1 style="text: center; color: white;">Share your favourite dish</h1>
-				<a class="btn btn-large btn-info" href="/dishes/new">Add more dish</a>
-            </div>
-          </div>
+			<div class="item">
+				<img id="com" src="https://www.comtamcali.com/images/slider2.jpg" alt="com tam" class="d-block w-100 img-responsive" data-interval="2000">	
+			  <div class="container">
+				<div class="carousel-caption">
+				  <h1>Share your favourite dish</h1>
+					<a class="btn btn-large btn-info" href="/dishes/new">Add more dish</a>
+				</div>
+			  </div>
+			</div>
         </div>
-      </div>
-
     </div><!-- /.carousel -->
 
 
 
-  <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+	
+
+  <div class="row text-center " style="display:flex; flex-wrap: wrap; ">
     <% dishes.forEach((dish)=>{ %>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-      <div class="thumbnail">
-        <img src="<%= dish.image %>" >
+      <div class="thumbnail clearfix" >
+        <img class="img-responsive center-block" src="<%= dish.image %>" >
 		  <div class="caption">
 			  <h4>
 				  <%= dish.name %>

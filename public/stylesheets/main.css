@@ -1,101 +1,92 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
- h1{
-font-family: 'Anton', sans-serif;
-font-family: 'Roboto', sans-serif;
-	font-size: 50px;
-	text-transform:uppercase;
-	animation: imageAnimation 30s linear infinite; 
-}
 
-#profile{
-font-family: 'Anton', sans-serif;
-font-family: 'Roboto', sans-serif;
-	font-size: 34px;
-	animation: imageAnimation 30s linear infinite; 
-} 
+	html {
+	  position: relative;
+	  min-height: 100%;
+	}
+	body {
+	  /* Margin bottom by footer height */
+	  margin-bottom: 60px;
+	}
+	 h1{
+	font-family: 'Anton', sans-serif;
+	font-family: 'Roboto', sans-serif;
+		font-size: 4vw;
 
-.thumbnail img {
-    width: 100%;
-	
-}
+		text-transform:uppercase;
+		animation: imageAnimation 30s linear infinite; 
+	}
+	#form{
+		width: 30%; margin: 25px auto;
+	}
 
-.thumbnail {
-    padding: 0;
-}
+	#profile{
+	font-family: 'Anton', sans-serif;
+	font-family: 'Roboto', sans-serif;
+		font-size: 34px;
+		animation: imageAnimation 30s linear infinite; 
+	} 
 
-.thumbnail .caption-full {
-    padding: 9px;
-}
+	.thumbnail img {
+		width: 100%;
+	}
+
+	.thumbnail {
+		padding: 0;
+	}
+
+	.thumbnail .caption-full {
+		padding: 9px;
+	}
 
 
-#delete-form{
-	display: inline;
-}
+	#delete-form{
+		display: inline;
+	}
 
-/* Google Maps */
-#map {
-    height: 400px;
-    width: 100%;
-}
-.container .text-muted {
-  margin: 20px 0;
-}
+	/* Google Maps */
+	#map {
+		height: 400px;
+		width: 100%;
+	}
+	.container .text-muted {
+	  margin: 20px 0;
+	}
 
- /* .a{
-  position: relative;
-  bottom: 0;
-}
+	.footer {
+	  position: absolute;
+	  bottom: 0;
+	  width: 100%;
+	  /* Set the fixed height of the footer here */
+	  height: 60px;
+	  background-color: #f5f5f5;
+	}
 
- .b{
-  position: absolute;
-  bottom: 0;
-} */
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
-}
+	.flex-wrap {
+	  display:flex;
+	  flex-wrap: wrap;
+	}
+	.btn-info{
+		background-image: linear-gradient(to right, #E44D26 0%, #F16529 51%, #E44D26 100%);
+		outline: none;
+		border-color: #E44D26;
+		animation: imageAnimation 30s linear infinite; 
+	}
 
-.flex-wrap {
-  display:flex;
-  flex-wrap: wrap;
-}
-.btn-info{
-	background-image: linear-gradient(to right, #E44D26 0%, #F16529 51%, #E44D26 100%);
-    outline: none;
-	border-color: #E44D26;
-	animation: imageAnimation 30s linear infinite; 
-}
 
-/* #info{
-	animation: imageAnimation 30s linear infinite; 
-} */
-
-@keyframes imageAnimation { 
-  0% { 
-    opacity: 0; 
-    animation-timing-function: ease-in;
-  }
-  10% {
-    opacity: 1
-  }
-
-}
+	@keyframes imageAnimation { 
+		0% { 
+			opacity: 0; 
+			animation-timing-function: ease-in;
+		   }
+		10% {
+			opacity: 1
+		  }
+	}
 
 /* Carousel base class */
     .carousel {
-      margin-bottom: 30px;
+      margin-bottom: 60px;
     }
 
     .carousel .container {
@@ -114,35 +105,30 @@ font-family: 'Roboto', sans-serif;
     }
 
     .carousel .item {
-      height: 500px;
+      height: 500px !important;
     }
     .carousel img {
       position: absolute;
       top: 0;
       left: 0;
-      min-width: 100%;
+      max-width: 100%;
+		height: 100%;
 
     }
-
     .carousel-caption {
       background-color: transparent;
       position: static;
       max-width: 100%; 
-      padding: 0 20px;
+      /* padding: 0 20px; */
       margin-top: 15%;
+		text-align: center;
+		color: white;
     }
     .carousel-caption h1,
     .carousel-caption .lead {
-	  width: 80%;
-      margin: auto;
-      line-height: 1.25;
-      color: #fff;
       text-shadow: 0 1px 1px rgba(0,0,0,.4);
 		color: white;
     }
-    .carousel-caption .btn {
-      margin-top: 10px;
-    
-    }
-
-
+	.carousel-indicators{
+	padding-left: 30px;
+	} 

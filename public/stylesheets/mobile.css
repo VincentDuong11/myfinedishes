@@ -1,0 +1,81 @@
+@media only screen and ( max-width: 600px)  { 
+	
+  /* For mobile phones: */
+	[class*="col-xs"] {
+  		width: 100%;
+	}
+	.navbar-toggle .icon-bar{
+		width: 30px !important;
+		height:3px !important;
+		/* margin-top: -4px;
+		margin-bottom: -2px; */
+		margin: -2px 2px -2px 2px;
+	}
+	#form{
+		width: 100% !important;
+		/* margin-top: 5px auto !important; */
+
+	}
+	#navbut{
+		padding-left: 5px ;
+		padding-right: 5px ;
+		margin-top:10px;
+		/* height: 30px; */
+	}
+	#nav-right{
+		margin-top: -10px;
+	}
+	#pho, #com{
+		display: none;
+	}
+
+	.clearfix {
+	  overflow: auto;
+	}
+
+	.carousel-caption h1 {
+		text-shadow: 0 1px 1px rgba(0,0,0,.4);
+		color: black;
+		padding: 0 40px ;
+		margin-top: -50px;
+		font-size: 17px;
+    }
+	.carousel-indicators li { visibility: hidden; }
+	.form-group{ margin: 10px 0 30px 0; 
+	}
+	.carousel-inner .item{
+		height: 100px !important;
+		background-size:cover;
+		background-position: center center;		 
+	}
+	.carousel-inner{
+		margin: 0 0 -30px 0;
+		
+	}
+	textarea{
+		/* margin-left: -50px; */
+		width: 300px;
+		margin:auto;
+	}
+	
+	 /* about page */
+	#profile2{
+		padding: 0 !important;
+		margin-top: 0
+	} 
+	#profile1{
+		border-top: 2px solid;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		margin-top: 20px;
+	} 
+	#profile3{
+		border-top: 2px solid;
+		padding-top: 20px;
+		padding-bottom: 10px;
+		margin-top: 40px;
+	} 
+
+
+
+}
