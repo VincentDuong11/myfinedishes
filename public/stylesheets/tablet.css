@@ -24,8 +24,22 @@
 	} 
 	/* adjust form */
 	#form{
-		width: 100% !important;
+		width: 60% !important;
 	}
 	.form-group{ margin: 10px 0 30px 0; 
 	}
+	/*Description box */
+	textarea{
+		/* margin-left: -50px; */
+		width: 100%;
+		margin:auto;
+	}
+	#show-page{
+		padding-right: 30px;
+		
+	}
+	/* .container{
+		padding: 0 15px 0 0;
+	} */
+
 }
