@@ -8,7 +8,7 @@
 <h2 style="text-align: center;">
 	Edit comment to <strong><%= dish.name %></strong>
 </h2>
-	<div style="width: 30%; margin: 30px auto;">
+	<div id="form" >
 		
 	
 <form action="/dishes/<%= dish_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
