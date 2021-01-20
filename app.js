@@ -1,38 +1,32 @@
 require('dotenv').config()
 
-//YelpCamp App
+//myfinefishes App
 
 //Require NPM app
-var express           = require("express"),
+var express               = require("express"),
 	app               = express(),
  	bodyParser        = require("body-parser"),
-	mongoose 		  = require("mongoose"),
-	moment 			  = require('moment'),
+	mongoose 	  = require("mongoose"),
+	moment 		  = require('moment'),
 	passport          = require("passport"),
 	LocalStrategy     = require("passport-local"),
 	methodOverride 	  = require("method-override"),
 	flash 			  = require("connect-flash")
 
 //Require classes
-var Dish              = require("./models/dish"),
+var 	Dish              = require("./models/dish"),
 	Comment           = require("./models/comment"),
 	seedDB            = require("./seeds"),
 	User              = require("./models/user")
 
 //requiring routes
-var commentRoutes     = require("./routes/comments"),
+var	commentRoutes     = require("./routes/comments"),
 	dishRoutes        = require("./routes/dishes"),
 	indexRoutes       = require("./routes/index")
 
-// var port = process.env.PORT || 3000;
-// app.listen(port, function () {
-//   console.log("Server Has Started!");
-// });
 
 var url = process.env.DATABASEURL || "mongodb://localhost/myboss_v1";
 
-
-//process.env.DATABASEURL=mongodb://localhost/MyBoss_v1
 mongoose.connect(url, {
 useUnifiedTopology: true,
 useNewUrlParser: true,
@@ -42,15 +36,6 @@ useNewUrlParser: true,
 	console.log('ERROR: ', err.message)
 });
 
-
-// mongoose.connect("mongodb+srv://trungchanh12:8328626@myboss-74op7.mongodb.net/<dbname>?retryWrites=true&w=majority", {
-// useUnifiedTopology: true,
-// useNewUrlParser: true,
-// }).then(() =>{
-// 	console.log('Connected to DB!');
-// }).catch(err =>{
-// 	console.log('ERROR: ', err.message)
-// });
 
 
 app.locals.moment = moment;
